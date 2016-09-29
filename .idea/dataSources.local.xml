@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - ardasdb@localhost" uuid="9d2afd6c-37d9-4738-b35a-11764f1085b9">
+      <secret-storage>master_key</secret-storage>
+      <user-name>titarenko</user-name>
+      <schema-pattern>ardisdb.pg_catalog ardisdb.public</schema-pattern>
+      <default-schemas>ardisdb.public</default-schemas>
+    </data-source>
+  </component>
+</project>

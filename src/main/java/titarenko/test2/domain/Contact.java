@@ -9,10 +9,6 @@ public class Contact {
 
     private String name;
 
-    public Contact(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public String getName() {
         return name;
