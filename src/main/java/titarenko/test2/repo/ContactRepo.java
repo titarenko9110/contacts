@@ -12,5 +12,5 @@ public interface ContactRepo {
 
     Integer getCount();
 
-    List<Contact> getContactsPart(Long from, Long to);
+    List<Contact> getContactsPart(Integer from, Integer to);
 }

@@ -1,6 +1,5 @@
 package titarenko.test2.service;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import titarenko.test2.domain.Contact;
@@ -20,24 +19,17 @@ public class ContactService {
     @Autowired
     private JdbcContactRepoImpl jdbcContactRepoImpl;
 
-
     public List<Contact> getFilteredContacts(String regex) {
         List<Contact> out = new ArrayList<>();
-        Long from = 0L;
-        Long to = 50000L;
-        boolean hasNext = true;
-        while (hasNext) {
-            List<Contact> fromDb = jdbcContactRepoImpl.getContactsPart(from, to);
-            if (CollectionUtils.isNotEmpty(fromDb)) {
-                hasNext = false;
-            } else {
-                List<Contact> filter = filter(regex, fromDb);
-                out.addAll(filter);
-                from = to - 1;
-                to = to + 50000;
-            }
-
-        }
+        Integer from = 0;
+        Integer to = 50000;
+        List<Contact> fromDb = jdbcContactRepoImpl.getContactsPart(from, to);
+        do{
+            List<Contact> filter = filter(regex, fromDb);
+            out.addAll(filter);
+            from = to - 1;
+            to = to + 50000;
+        }while (!fromDb.isEmpty());
         return out;
     }
 
