@@ -1,4 +1,4 @@
-package titarenko.test2.web;
+package titarenko.test2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Created by MyMac on 30.09.16.
  */
 @RunWith(MockitoJUnitRunner.class )
-public class ContactControllerTest {
+public class ContactServiceTest {
 
     @Mock
     private JdbcContactRepoImpl jdbcContactRepoImpl;

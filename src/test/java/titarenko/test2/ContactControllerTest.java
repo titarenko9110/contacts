@@ -1,4 +1,4 @@
-package titarenko.test2.repo.jdbc;
+package titarenko.test2;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,20 +16,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
-import titarenko.test2.Application;
 import titarenko.test2.domain.Contact;
-import titarenko.test2.service.ContactService;
-import titarenko.test2.web.ContactController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by MyMac on 29.09.16.
@@ -37,7 +30,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
 @WebIntegrationTest
-public class JdbcContactRepoImplTest {
+public class ContactControllerTest {
 
     RestTemplate restTemplate = new RestTemplate();
 
