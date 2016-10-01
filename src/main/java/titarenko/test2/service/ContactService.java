@@ -20,20 +20,21 @@ public class ContactService {
     private JdbcContactRepoImpl jdbcContactRepoImpl;
 
     public List<Contact> getFilteredContacts(String regex) {
+        Integer from= 0;
+        Integer to = 50001;
         List<Contact> out = new ArrayList<>();
-        Integer from = 0;
-        Integer to = 50000;
-        List<Contact> fromDb = jdbcContactRepoImpl.getContactsPart(from, to);
-        do{
+        List<Contact> fromDb;
+        do {
+            fromDb = jdbcContactRepoImpl.getContactsPart(from, to);
             List<Contact> filter = filter(regex, fromDb);
             out.addAll(filter);
             from = to - 1;
             to = to + 50000;
-        }while (!fromDb.isEmpty());
+        } while (!fromDb.isEmpty());
         return out;
     }
 
-    public List<Contact> filter(String regex, List<Contact> fromDb){
-        return fromDb.stream().filter(s -> s.getName().matches(regex)).collect(Collectors.toList());
+    public List<Contact> filter(String regex, List<Contact> fromDb) {
+        return fromDb.stream().filter(s -> !s.getName().matches(regex)).collect(Collectors.toList());
     }
 }
