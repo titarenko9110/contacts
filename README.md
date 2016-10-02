@@ -15,7 +15,7 @@
 
     -Запускаем скрипт создания таблицы
 
-         CREATE TABLE public.contact
+         CREATE TABLE public.contacts
          (
              column_1 BIGINT PRIMARY KEY NOT NULL,
              name VARCHAR NOT NULL
