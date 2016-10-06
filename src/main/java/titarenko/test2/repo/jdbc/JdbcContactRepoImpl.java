@@ -43,7 +43,7 @@ public class JdbcContactRepoImpl extends JdbcDaoSupport implements ContactRepo {
 
     @Override
     public List<Contact> getContactsPart(Integer from, Integer to) {
-        return getJdbcTemplate().query("select * FROM contacts where id > ? and id < ?", ROW_MAPPER, from, to);
+        return getJdbcTemplate().query("select id, name FROM contacts where id > ? and id < ?", ROW_MAPPER, from, to);
     }
 
 
