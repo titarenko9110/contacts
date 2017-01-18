@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2bb1d342-21da-41f7-977e-f9f2571af862" name="Default" comment="prop">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/titarenko/test2/ContactControllerTest$1.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/titarenko/test2/repo/jdbc/JdbcContactRepoImpl.class" afterPath="$PROJECT_DIR$/target/classes/titarenko/test2/repo/jdbc/JdbcContactRepoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/titarenko/test2/service/ContactService.class" afterPath="$PROJECT_DIR$/target/classes/titarenko/test2/service/ContactService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/titarenko/test2/web/ContactController.class" afterPath="$PROJECT_DIR$/target/classes/titarenko/test2/web/ContactController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/titarenko/test2/ContactControllerTest.class" afterPath="$PROJECT_DIR$/target/test-classes/titarenko/test2/ContactControllerTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Contacts.iml" afterPath="$PROJECT_DIR$/Contacts.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/titarenko/test2/repo/jdbc/JdbcContactRepoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/titarenko/test2/repo/jdbc/JdbcContactRepoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/titarenko/test2/service/ContactService.java" afterPath="$PROJECT_DIR$/src/main/java/titarenko/test2/service/ContactService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/titarenko/test2/web/ContactController.java" afterPath="$PROJECT_DIR$/src/main/java/titarenko/test2/web/ContactController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/titarenko/test2/ContactControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/titarenko/test2/ContactControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
     </list>
     <ignored path="Contacts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1291,7 +1274,7 @@
       <workItem from="1483293291985" duration="52000" />
       <workItem from="1484431621938" duration="48000" />
       <workItem from="1484431956962" duration="19339000" />
-      <workItem from="1484572648298" duration="39612000" />
+      <workItem from="1484572648298" duration="39994000" />
     </task>
     <servers />
   </component>
@@ -1328,7 +1311,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135624000" />
+    <option name="totallyTimeSpent" value="136006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1345,7 +1328,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3494318" sideWeight="0.4806139" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40482953" sideWeight="0.48707592" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5994318" sideWeight="0.48707592" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3536932" sideWeight="0.48707592" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2924071" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
