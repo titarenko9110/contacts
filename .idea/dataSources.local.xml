@@ -7,5 +7,10 @@
       <schema-pattern>ardisdb.pg_catalog ardisdb.public</schema-pattern>
       <default-schemas>ardisdb.public</default-schemas>
     </data-source>
+    <data-source name="PostgreSQL - ardasdb@localhost [2]" uuid="a1d5a964-3d45-4239-af24-283249095bfb">
+      <secret-storage>master_key</secret-storage>
+      <schema-pattern>ardasdb.*</schema-pattern>
+      <default-schemas>ardasdb.*</default-schemas>
+    </data-source>
   </component>
 </project>

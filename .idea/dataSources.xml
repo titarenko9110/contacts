@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2727108961">
+  <component name="DataSourceManagerImpl" format="xml" hash="1976250999">
     <data-source source="LOCAL" name="PostgreSQL - ardasdb@localhost" uuid="9d2afd6c-37d9-4738-b35a-11764f1085b9">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/ardasdb</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - ardasdb@localhost [2]" uuid="a1d5a964-3d45-4239-af24-283249095bfb">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

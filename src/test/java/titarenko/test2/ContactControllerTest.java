@@ -1,5 +1,6 @@
 package titarenko.test2;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +19,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 import titarenko.test2.domain.Contact;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -35,19 +39,21 @@ public class ContactControllerTest {
     RestTemplate restTemplate = new RestTemplate();
 
     @Test
-    public void test(){
+    public void test() throws IOException {
+        FileUtils.writeStringToFile(new File("/Users/MyMac/Desktop/BETS/forTestIO.txt"), "\n ++",true);
     }
 
-//    @Test
+    @Test
     public void getContactsTest() throws Exception {
-        ResponseEntity<List<Contact>> responseEntity = restTemplate.exchange("http://localhost:8090/hello/contacts?nameFilter=^A.*$",
-                HttpMethod.GET, null, new ParameterizedTypeReference<List<Contact>>() {
-                });
+//        ResponseEntity<List<Contact>> responseEntity = restTemplate.exchange("http://localhost:8090/hello/contacts?nameFilter=^t.*$",
+//                HttpMethod.GET, null, new ParameterizedTypeReference<List<Contact>>() {
+//                });
+//
+//        List<Contact> body = responseEntity.getBody();
+//        System.out.println(body.size());
+//        assertThat(body.size(), is(1));
+//        assertEquals(body.get(0).getName(), "cdf");
 
-        List<Contact> body = responseEntity.getBody();
-        System.out.println(body);
-        assertThat(body.size(), is(1));
-        assertEquals(body.get(0).getName(), "cdf");
     }
 
 

@@ -29,6 +29,6 @@ public class ContactController {
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     @ResponseBody
     public List<Contact> getListContacts(@RequestParam(value = "nameFilter", required = false) String nameFilter) throws IOException {
-        return contactService.getFilteredContacts(nameFilter);
+        return contactService.get2(nameFilter);
     }
 }

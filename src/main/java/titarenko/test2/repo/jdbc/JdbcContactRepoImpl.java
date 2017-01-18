@@ -21,30 +21,30 @@ import java.util.Locale;
 /**
  * Created by MyMac on 28.09.16.
  */
-@Repository
-public class JdbcContactRepoImpl extends JdbcDaoSupport implements ContactRepo {
+//@Repository
+public class JdbcContactRepoImpl extends JdbcDaoSupport {
 
-    private static final BeanPropertyRowMapper<Contact> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Contact.class);
-
-    @Autowired
-    private DataSource dataSource;
-
-    @PostConstruct
-    private void initialize() {
-        setDataSource(dataSource);
-    }
-
-    @Override
-    public Integer getCount() {
-        String sql = "SELECT Count(*) FROM contacts";
-        Integer total = getJdbcTemplate().queryForObject(sql, Integer.class);
-        return total;
-    }
-
-    @Override
-    public List<Contact> getContactsPart(Integer from, Integer to) {
-        return getJdbcTemplate().query("select id, name FROM contacts where id > ? and id < ?", ROW_MAPPER, from, to);
-    }
+//    private static final BeanPropertyRowMapper<Contact> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Contact.class);
+//
+//    @Autowired
+//    private DataSource dataSource;
+//
+//    @PostConstruct
+//    private void initialize() {
+//        setDataSource(dataSource);
+//    }
+//
+//    @Override
+//    public Integer getCount() {
+//        String sql = "SELECT Count(*) FROM contacts";
+//        Integer total = getJdbcTemplate().queryForObject(sql, Integer.class);
+//        return total;
+//    }
+//
+//    @Override
+//    public List<Contact> getContactsPart(Integer from, Integer to) {
+//        return getJdbcTemplate().query("select id, name FROM contacts where id > ? and id < ?", ROW_MAPPER, from, to);
+//    }
 
 
 
