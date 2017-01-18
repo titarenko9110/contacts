@@ -16,12 +16,9 @@ import titarenko.test2.repo.jdbc.TestRepo;
 @SpringApplicationConfiguration(Application.class)
 //@WebIntegrationTest
 public class TestDb {
-
     @Autowired
     private TestRepo testRepo;
-
     @Test
-
     public void name() throws Exception {
 
     }
