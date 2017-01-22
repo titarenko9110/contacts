@@ -9,14 +9,13 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import titarenko.test2.Application;
 import titarenko.test2.domain.*;
+import titarenko.test2.domain.current.CurrentCountry;
+import titarenko.test2.repo.CurrentCountryRepo;
 import titarenko.test2.repo.SportRepo;
 
 import java.awt.print.Book;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by MyMac on 15.01.17.
@@ -49,10 +48,25 @@ public class MainServiceTest {
     private BookMakerSerice bookMakerSerice;
     @Autowired
     private ParseHtml parseHtml;
+    @Autowired
+    private CurrentCountryRepo currentCountryRepo;
+    @Autowired
+    private ScheduledsService scheduledsService;
 
     @Test
     public void name() throws Exception {
+        List<String> list1 = Arrays.asList("a","b","c");
+        List<String> list2 = Arrays.asList("b","c");
 
+    }
+
+    @Test
+    public void name2() throws Exception {
+        LocalTime now1 = LocalTime.now();
+        scheduledsService.updateCountrys();
+        scheduledsService.updateLeagues();
+        LocalTime now2 = LocalTime.now();
+        System.out.println(now1 + " " + now2);
     }
 
     @Test
@@ -61,16 +75,16 @@ public class MainServiceTest {
 //        parseHtml.saveHtmlBookmaker();
         Sport sport = new Sport();
         sport.setName("Hockey");
-        betService.mainInNewThread(sport);
-        Sport sport3 = new Sport();
-        sport3.setName("Basketball");
-        betService.mainInNewThread(sport3);
+        betService.doMain(sport);
+//        Sport sport3 = new Sport();
+//        sport3.setLeagueName("Basketball");
+//        betService.doMain(sport3);
 
         Thread.sleep(4000000);
 
     }
 
-    @Test
+//    @Test
     public void getToken() throws Exception {
 
         Sport sport = new Sport();

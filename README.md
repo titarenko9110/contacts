@@ -18,7 +18,7 @@
          CREATE TABLE public.contacts
          (
              column_1 BIGINT PRIMARY KEY NOT NULL,
-             name VARCHAR NOT NULL
+             leagueName VARCHAR NOT NULL
          );
          CREATE UNIQUE INDEX contact_column_1_uindex ON public.contact (column_1);
 

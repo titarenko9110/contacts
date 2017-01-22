@@ -1,6 +1,7 @@
 package titarenko.test2.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -9,9 +10,10 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "sport")
+@Table(name = "testdb")
 public class TestDb {
 
+    @Id
     private String id;
     private String name;
     private Date date;

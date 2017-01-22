@@ -52,7 +52,7 @@ public class ContactControllerTest {
 //        List<Contact> body = responseEntity.getBody();
 //        System.out.println(body.size());
 //        assertThat(body.size(), is(1));
-//        assertEquals(body.get(0).getName(), "cdf");
+//        assertEquals(body.get(0).getLeagueName(), "cdf");
 
     }
 

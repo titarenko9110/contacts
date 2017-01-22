@@ -20,7 +20,8 @@ public class CountryService {
     public List<Country> getCountriesDataBySport(String sportName) {
         HttpResponse<String> response = null;
         try {
-            response = Unirest.get("https://api-"+MainService.liveOrPre+".allbestbets.ru/api/v2/" + sportName + "/countries?access_token=" + MainService.getToken())
+            String url = "https://api-"+MainService.liveOrPre+".allbestbets.ru/api/v2/" + sportName + "/countries?access_token=" + MainService.getToken();
+            response = Unirest.get(url)
                     .header("content-type", "application/json")
                     .asString();
         } catch (UnirestException e) {
@@ -29,6 +30,9 @@ public class CountryService {
             JSONArray jsonArray = null;
             try {
                 String body = response.getBody();
+                System.out.println(body);
+                System.out.println(response);
+
                 JSONObject jsonObject = new JSONObject(body);
                 JSONObject sports = jsonObject.getJSONObject("sport");
                 jsonArray = sports.getJSONArray("country");

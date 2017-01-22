@@ -6,7 +6,6 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.apache.commons.collections.CollectionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import titarenko.test2.domain.League;
 

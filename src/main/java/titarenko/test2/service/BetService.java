@@ -28,7 +28,6 @@ import java.util.concurrent.Executors;
 public class BetService {
 
 
-
     @Autowired
     private LeagueService leagueService;
     @Autowired
@@ -46,7 +45,7 @@ public class BetService {
     public Map<OutCome, List<Bet>> getBetsBySportEventMarketPeriod(String sportName, Integer eventId, Integer marketId, Integer periodId) {
         HttpResponse<String> response = null;
         try {
-            response = Unirest.get("https://api-"+MainService.liveOrPre+"."+MainService.syte+".ru/api/v2/" + sportName + "/events/" + eventId + "/markets/" + marketId + "/periods/" + periodId + "/bets?access_token=" + MainService.getToken())
+            response = Unirest.get("https://api-" + MainService.liveOrPre + "." + MainService.syte + ".ru/api/v2/" + sportName + "/events/" + eventId + "/markets/" + marketId + "/periods/" + periodId + "/bets?access_token=" + MainService.getToken())
                     .header("content-type", "application/json")
                     .asString();
         } catch (UnirestException e) {
@@ -152,10 +151,10 @@ public class BetService {
     }
 
 
-    public void mainInNewThread(Sport sport){
+    public void mainInNewThread(Sport sport) {
         threadPool.execute(() -> {
             doMain(sport);
-//            if(sport.getName().equals("Basketball")){
+//            if(sport.getLeagueName().equals("Basketball")){
 //                for (int i = 0; i < 30; i++){
 //                    try {
 //                        FileUtils.writeStringToFile(new File("/Users/MyMac/Desktop/BETS/BasketballIO.txt"), "\n "+LocalTime.now()+" \n",true);
@@ -168,7 +167,7 @@ public class BetService {
 //                    }
 //                }
 //            }
-//            if(sport.getName().equals("Hockey")){
+//            if(sport.getLeagueName().equals("Hockey")){
 //                for (int i = 0; i < 30; i++){
 //                    try {
 //                        FileUtils.writeStringToFile(new File("/Users/MyMac/Desktop/BETS/HockeyIO.txt"), "\n "+LocalTime.now()+" \n",true);
@@ -187,90 +186,98 @@ public class BetService {
     }
 
 
-
-    public void doMain(Sport sport)  {
+    public void doMain(Sport sport) {
         System.out.println(sport.getName());
 //        List<Sport> sportsFromDb = sportService.getSportsFromDb();
 //        for (Sport sport : sportsFromDb) {
         LocalTime now1 = LocalTime.now();
-//            System.out.println(sport.getName());
+//            System.out.println(sport.getLeagueName());
         List<Country> countriesDataBySport = countryService.getCountriesDataBySport(sport.getName());
         for (Country country : countriesDataBySport) {
             List<League> leaguesBySportAndCountry = leagueService.getLeaguesBySportAndCountry(sport.getName(), country.getId());
-             for (League league : leaguesBySportAndCountry) {
-                System.out.println("here" + sport.getName());
-                List<Event> eventsBySportAndCountry = eventsService.getEventsBySportAndCountry(sport.getName(), league.getId());
-                List<Market> markets = marketService.getEventsBySportAndCountry(sport.getName(), league.getId());
-                Map<Integer, List<Period>> periodsInMarket = new HashMap<>();
-                if (CollectionUtils.isNotEmpty(markets)) {
-                    for (Market market : markets) {
-                        List<Period> periods = periodService.getPeriodsBySportAndLeagueAndMarket(sport.getName(), league.getId(), market.getId());
-                        periodsInMarket.put(market.getId(), periods);
-                    }
-                    for (Event event : eventsBySportAndCountry) {
-                        for (Map.Entry<Integer, List<Period>> entry : periodsInMarket.entrySet()) {
-                            Integer marketId = entry.getKey();
-                            List<Period> periods = entry.getValue();
-                            if (CollectionUtils.isNotEmpty(periods)) {
-                                for (Period period : periods) {
-                                    Map<OutCome, List<Bet>> bets = getBetsBySportEventMarketPeriod(sport.getName(), event.getId(), marketId, period.getIdentifier());
-                                    if(bets.size() > 0){
-                                        for (Map.Entry<OutCome, List<Bet>> entryBet : bets.entrySet()){
-                                            int count = 0;
-                                            for (Bet b : entryBet.getValue()) {
-                                                String bookmaker = b.getBookmaker();
-                                                if(bookmaker.contains("Bet365") || bookmaker.contains("Pinnacle") || bookmaker.contains("Sbobet") || bookmaker.contains("PaddyPower")){
-                                                    count++;
+            if (CollectionUtils.isNotEmpty(leaguesBySportAndCountry)) {
+                for (League league : leaguesBySportAndCountry) {
+//                    System.out.println("here2" + sport.getLeagueName());
+                    List<Event> eventsBySportAndCountry = eventsService.getEventsBySportAndCountry(sport.getName(), league.getId());
+                    List<Market> markets = marketService.getEventsBySportAndCountry(sport.getName(), league.getId());
+                    Map<Integer, List<Period>> periodsInMarket = new HashMap<>();
+                    if (CollectionUtils.isNotEmpty(markets)) {
+                        for (Market market : markets) {
+                            List<Period> periods = periodService.getPeriodsBySportAndLeagueAndMarket(sport.getName(), league.getId(), market.getId());
+                            periodsInMarket.put(market.getId(), periods);
+                        }
+                        for (Event event : eventsBySportAndCountry) {
+                            threadPool.execute(() -> {
+                                for (Map.Entry<Integer, List<Period>> entry : periodsInMarket.entrySet()) {
+                                    Integer marketId = entry.getKey();
+                                    List<Period> periods = entry.getValue();
+                                    if (CollectionUtils.isNotEmpty(periods)) {
+                                        for (Period period : periods) {
+                                            Map<OutCome, List<Bet>> bets = getBetsBySportEventMarketPeriod(sport.getName(), event.getId(), marketId, period.getIdentifier());
+                                            if (bets.size() > 0) {
+                                                String out = "";
+                                                for (Map.Entry<OutCome, List<Bet>> entryBet : bets.entrySet()) {
+                                                    int count = 0;
+                                                    for (Bet b : entryBet.getValue()) {
+                                                        String bookmaker = b.getBookmaker();
+                                                        if (bookmaker.contains("Bet365") || bookmaker.contains("Pinnacle") || bookmaker.contains("Sbobet") || bookmaker.contains("PaddyPower")) {
+                                                            count++;
+                                                        }
+                                                    }
+                                                    if (!(count > 1)) {
+                                                        continue;
+                                                    }
+                                                    out += "=====================================================================\n";
+                                                    out += "Country" + country.getName() + " League " + league.getName() + " Event " + event.getName() + " Market " + marketId + "Period" + period.getName() + "\n";
+                                                    out += "---------------------------------------------------------------------" + "\n";
+                                                    out += "OutCame : " + entryBet.getKey() + "\n";
+                                                    for (Bet bet : entryBet.getValue()) {
+                                                        out += "" + "BET" + "\n";
+                                                        out += "Boookmaker" + bet.getBookmaker() + " Odd " + bet.getOdd() + "\n";
+                                                    }
+                                                    out += "" + "+++++++++" + "\n";
+                                                    out += getMinOdd(entryBet.getValue()) + "\n";
+                                                    out += getMaxOdd(entryBet.getValue()) + "\n";
+                                                    out += getMiddleOdd(entryBet.getValue()) + "\n";
+                                                    out += "+++++++++" + "\n";
+                                                    out += "---------------------------------------------------------------------" + "\n";
+
                                                 }
+                                                writeToFile(sport.getName(), out);
                                             }
-                                            if(!(count >1)){
-                                                continue;
-                                            }
-                                            writeToFile(sport.getName(),""+"=====================================================================\n");
-                                            writeToFile(sport.getName(),""+"Country" + country.getName() + " League " + league.getName() + " Event " + event.getName() + " Market " + marketId + "Period" + period.getName() +"\n");
-                                            writeToFile(sport.getName(),""+"---------------------------------------------------------------------"+"\n");
-                                            writeToFile(sport.getName(),""+"OutCame : " + entryBet.getKey()+"\n");
-                                            for (Bet bet : entryBet.getValue()) {
-                                                writeToFile(sport.getName(),""+"BET"+"\n");
-                                                writeToFile(sport.getName(),""+"Boookmaker" + bet.getBookmaker() + " Odd " + bet.getOdd()+"\n");
-                                            }
-                                            writeToFile(sport.getName(),""+"+++++++++"+"\n");
-                                            writeToFile(sport.getName(),""+getMinOdd(entryBet.getValue())+"\n");
-                                            writeToFile(sport.getName(),""+getMaxOdd(entryBet.getValue())+"\n");
-                                            writeToFile(sport.getName(),""+getMiddleOdd(entryBet.getValue())+"\n");
-                                            writeToFile(sport.getName(),"+++++++++"+"\n");
-                                            writeToFile(sport.getName(),"---------------------------------------------------------------------"+"\n");
                                         }
                                     }
                                 }
-                            }
+
+                            });
+
                         }
                     }
                 }
             }
         }
         LocalTime now2 = LocalTime.now();
-        writeToFile(sport.getName(),""+now1 + " " + now2+"\n");
-        writeToFile(sport.getName(),""+"Count " + MainService.count+"\n");
+        writeToFile(sport.getName(), "" + now1 + " " + now2 + "\n");
+        writeToFile(sport.getName(), "" + "Count " + MainService.count + "\n");
 //        }
     }
 
-    public void writeToFile(String sport,String text) {
+    public void writeToFile(String sport, String text) {
         String path = "/Users/MyMac/Desktop/BETS/OtherIO.txt";
-        if(sport.equals("Basketball")){
+        if (sport.equals("Basketball")) {
             path = "/Users/MyMac/Desktop/BETS/BasketballIO.txt";
         }
-        if(sport.equals("Hockey")){
+        if (sport.equals("Hockey")) {
             path = "/Users/MyMac/Desktop/BETS/HockeyIO.txt";
         }
-        if(sport.equals("Soccer")){
+        if (sport.equals("Soccer")) {
             path = "/Users/MyMac/Desktop/BETS/SoccerIO.txt";
         }
-        if(sport.equals("Tennis")){
+        if (sport.equals("Tennis")) {
             path = "/Users/MyMac/Desktop/BETS/TennisIO.txt";
         }
         try {
-            FileUtils.writeStringToFile(new File(path), text,true);
+            FileUtils.writeStringToFile(new File(path), text, true);
         } catch (IOException e) {
         }
 
